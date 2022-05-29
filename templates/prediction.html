@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	{% if error %}
+		<h1 class="text-center text-danger display-3 p-3 m-2">{{ error }}</h1>
+	{% endif %}
+
+	{% if pred %}
+		<h1 class="text-center text-success display-1 p-3 m-2">{{ pred }}</h1>
+	{% endif %}
+	<center>
+		<h3 class="h3">
+			<a href="{% url 'home' %}" class="btn btn-primary btn-lg">Go Back</a>
+		</h3>
+	</center>
+{% endblock %}

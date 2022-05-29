@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1 class="display-3"> 
+				Hello world, upload a handwritten number to identify it using AI 
+			</h1><br /><br/><br />
+			<form method="post" enctype="multipart/form-data" action="{% url 'prediction' %}">
+      			{% csrf_token %}
+				<div class="form-group">
+	        		<label class="lead" for="content_image">Upload your image</label>
+	        		<input 	type="file" name='content_image' 
+	        				class="pt-5 pb-5 form-control-file filestyle" 
+	        				id="content_image"
+	        				data-btnClass="btn btn-info pt-5 pb-5"
+	        				data-size="lg"
+	        				data-buttonBefore="true"
+	        				data-placeholder="No image selected"
+	        				data-text="Browse the image/drag & drop the image">
+	      		</div>
+	      		<button type="submit" class="btn btn-primary btn-lg submit_btn" name="content_sumbit" value="1">Submit</button>
+	      	</form>
+
+      		
+
+		</div>
+	</div>
+	
+</div>
+
+{% endblock %}
+
+{% block add_js %}
+  
+  <script type="text/javascript" src="{% static 'script/bootstrap-filestyle.min.js' %}"> </script>
+  <script type="text/javascript" src="{% static 'script/predictor.js' %}"> </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      button_height = $("span[class='group-span-filestyle input-group-btn']").css("height")
+      $('input[placeholder="No image selected"][type="text"]').css('height', button_height);
+    });
+
+  </script>
+{% endblock %}

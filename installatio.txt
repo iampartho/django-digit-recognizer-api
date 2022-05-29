@@ -1,0 +1,13 @@
+conda create -n nybsysapi python=3.6
+
+pip install django==2.2
+
+django-admin startproject api
+
+conda install -c conda-forge opencv
+
+pip install pillow
+
+conda install -c anaconda numpy
+
+conda install pytorch torchvision torchaudio cpuonly -c pytorch

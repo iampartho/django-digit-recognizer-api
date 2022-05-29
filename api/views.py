@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 
 
@@ -25,7 +25,8 @@ def digit_recognizer(request):
 			if content_image:
 				try:
 				
-					pil_image = Image.open(content_image)
+					pil_image = Image.open(content_image).convert('L')
+					#pil_image = ImageOps.grayscale(pil_image) # converting the image in grayscale
 					img = np.array(pil_image)
 					
 					digit_image = segments_image(img)

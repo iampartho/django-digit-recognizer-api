@@ -23,22 +23,22 @@ def digit_recognizer(request):
 				
 				return render(request, 'prediction.html', context={'error':error})
 			if content_image:
-				#try:
+				try:
 				
-				pil_image = Image.open(content_image)
-				img = np.array(pil_image)
-				
-				digit_image = segments_image(img)
-
-				number = get_prediction(digit_image)
+					pil_image = Image.open(content_image)
+					img = np.array(pil_image)
 					
-				return render(request, 'prediction.html', context={'pred':f'The number in the image is {number}'})
+					digit_image = segments_image(img)
 
-				# except:
-				# 	error = 'Sorry, your image is invalid, please upload a valid image'
+					number = get_prediction(digit_image)
+						
+					return render(request, 'prediction.html', context={'pred':f'The number in the image is {number}'})
+
+				except:
+					error = 'Sorry, your image is invalid, please upload a valid image'
 
 					
-				# 	return render(request, 'prediction.html', context={'error':error})
+					return render(request, 'prediction.html', context={'error':error})
 
 	else:
 		return redirect('home')
